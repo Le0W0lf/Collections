@@ -177,6 +177,12 @@ namespace Collections
                     case "ex11":
                         Exercise11();
                         break;
+                    case "ex12":
+                        Exercise12();
+                        break;
+                    case "ex13":
+                        Exercise13();
+                        break;
                     default:
                         Console.WriteLine("Something do wrong. Try again.");
                         break;
@@ -534,6 +540,7 @@ namespace Collections
 
         public static void Exercise12()
         {
+            var a = 0b_10;
             Console.Clear();
             Action<int> action = x => Console.WriteLine(x);
             Func<int> func = (()=>10);
@@ -543,6 +550,16 @@ namespace Collections
             {
                 Console.WriteLine(t.Key);
             }
+        }
+
+        public static void Exercise13()
+        {
+            Console.Clear();
+            var sub1 = persons.OrderBy(x => x.Name);
+            persons.Add(new Person("Abc", 10, "rogue", 25));
+            Print(sub1);
+            Console.WriteLine();
+            Print(persons);
         }
     }
 }
