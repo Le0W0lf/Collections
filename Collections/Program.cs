@@ -437,12 +437,16 @@ namespace Collections
             Console.Clear();
             List<Years> years = new List<Years>();
             //Console.WriteLine("list start");
-            years.Add(new Years(1,12,"baby"));
-            years.Add(new Years(13,19,"teen"));
-            years.Add(new Years(20, 30, "young"));
-            years.Add(new Years(31, 50, "mediumm"));
-            years.Add(new Years(51, 100, "old"));
-            years.Add(new Years(100, int.MaxValue, "not human"));
+            for (int i = 0; i < 1000; i++)
+            {
+                years.Add(new Years(1, 12, "baby"));
+                years.Add(new Years(13, 19, "teen"));
+                years.Add(new Years(20, 30, "young"));
+                years.Add(new Years(31, 50, "mediumm"));
+                years.Add(new Years(51, 100, "old"));
+                years.Add(new Years(100, int.MaxValue, "not human"));
+            }
+
             //Console.WriteLine("list created");
 
             var sub1 = persons.SelectMany(y => years, (x, y) => new { Name = x.Name, Age = y.Name, L = y.L, R = y.R, CurAge = x.Age }).
@@ -454,8 +458,9 @@ namespace Collections
                        orderby x.Name
                        select new { Name = x.Name, Age = y.Name };
 
+
             //var sub3 = persons.Zip(years, (x, y) => new { Name = x.Name, Age = y.Name, L = y.L, R = y.R, CurAge = x.Age });
-                //Where(x => (x.CurAge >= x.L && x.CurAge <= x.R)).Select(x => new { Name = x.Name, Age = x.Age }).OrderBy(x => x.Name);
+            //Where(x => (x.CurAge >= x.L && x.CurAge <= x.R)).Select(x => new { Name = x.Name, Age = x.Age }).OrderBy(x => x.Name);
 
             foreach (var t in sub1)
             {
@@ -525,6 +530,19 @@ namespace Collections
                 Console.WriteLine(t);
             }
 
+        }
+
+        public static void Exercise12()
+        {
+            Console.Clear();
+            Action<int> action = x => Console.WriteLine(x);
+            Func<int> func = (()=>10);
+            var sub1 = from x in persons
+                       group x by x.Class;
+            foreach(var t in sub1)
+            {
+                Console.WriteLine(t.Key);
+            }
         }
     }
 }
